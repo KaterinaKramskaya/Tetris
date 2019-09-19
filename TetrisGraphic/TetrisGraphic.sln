@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisGraphic", "TestGraphic\TetrisGraphic.csproj", "{06AD255B-FD58-4BDC-BCD5-937C155B1BC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TetrisGraphic", "TetrisGraphic\TetrisGraphic.csproj", "{06AD255B-FD58-4BDC-BCD5-937C155B1BC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{6425262B-1563-4E46-9366-48C6FC7CCF0E}"
 	ProjectSection(SolutionItems) = preProject
-		TestGraphic\bin\Debug\ConsoleGraphics.cs.dll = TestGraphic\bin\Debug\ConsoleGraphics.cs.dll
+		TetrisGraphic\bin\Debug\ConsoleGraphics.cs.dll = TetrisGraphic\bin\Debug\ConsoleGraphics.cs.dll
 		..\..\DataStructures.Lib\DataStructures.Lib\obj\Debug\netstandard2.0\DataStructures.Lib.dll = ..\..\DataStructures.Lib\DataStructures.Lib\obj\Debug\netstandard2.0\DataStructures.Lib.dll
 	EndProjectSection
 EndProject
