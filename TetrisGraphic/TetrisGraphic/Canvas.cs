@@ -9,18 +9,19 @@ namespace TetrisGraphic
 {
     public class Canvas : GameObject
     {
-        public int ClientHeigth { get { return _height + 2 * Constant.Size + Constant.XOffset; } }
-        public int ClientWidth { get { return _width + Constant.YOffset; } }
+        private int _clientHeight;
+        private int _clientWidth;
+
+        public int ClientHeight { get { return _clientHeight; } }
+        public int ClientWidth { get { return _clientWidth; } }
 
         public Canvas(uint color, int height, int width, int coordX, int coordY) : base(color, height, width, coordX, coordY)
         {
             _height = height - Constant.YOffset;
             _width = width - Constant.XOffset;
-        }
 
-        public override void Render(ConsoleGraphics graphic)
-        {
-            base.Render(graphic);
+            _clientHeight = _height + 2 * Constant.Size + Constant.XOffset;
+            _clientWidth = _width + Constant.YOffset;
         }
     }
 }

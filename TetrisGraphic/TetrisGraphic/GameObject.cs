@@ -7,7 +7,7 @@ using NConsoleGraphics;
 
 namespace TetrisGraphic
 {
-    public abstract class GameObject
+    public class GameObject
     {
         protected int _size = Constant.Size;
 
@@ -18,12 +18,14 @@ namespace TetrisGraphic
         protected int _coordX;
         protected int _coordY;
 
-        public GameObject()
-        {
+        public int CoordX { get { return _coordX; } set { _coordX = value; } }
+        public int CoordY { get { return _coordY; } set { _coordY = value; } }
 
+        protected GameObject()
+        {
         }
 
-        public GameObject(uint color, int height, int width, int coordX, int coordY)
+        protected GameObject(uint color, int height, int width, int coordX, int coordY)
         {
             _color = color;
             _height = height;
@@ -35,6 +37,7 @@ namespace TetrisGraphic
         public virtual void Update()
         {
         }
+
         public virtual void Update(MovingType movingType)
         {
         }

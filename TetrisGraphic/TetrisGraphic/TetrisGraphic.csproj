@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,8 +59,16 @@
     <Compile Include="Figure.cs" />
     <Compile Include="FigureColors.cs" />
     <Compile Include="FigureCreator.cs" />
+    <Compile Include="FigureI.cs" />
+    <Compile Include="FigureJLeft.cs" />
+    <Compile Include="FigureJRight.cs" />
+    <Compile Include="FigureO.cs" />
+    <Compile Include="FigureS.cs" />
+    <Compile Include="FigureT.cs" />
+    <Compile Include="FigureZ.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjectParametres.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="MovingType.cs" />
     <Compile Include="Program.cs" />

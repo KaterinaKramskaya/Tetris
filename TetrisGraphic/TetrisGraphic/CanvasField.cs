@@ -14,14 +14,7 @@ namespace TetrisGraphic
         private int _clientHeight;
         private int _clientWidth;
 
-        public Cube[,] CanvasFieldArray
-        {
-            get
-            {
-                Cube[,] canvasField = _canvasField;
-                return canvasField;
-            }
-        }
+        public Cube[,] CanvasFieldArray { get { return _canvasField; } }
 
         public CanvasField(int сlientHeight, int сlientWidth)
         {
@@ -42,14 +35,6 @@ namespace TetrisGraphic
         public void CreateCanvasField()
         {
             _canvasField = new Cube[_clientHeight, _clientWidth];
-
-            for (int i = 0; i < _canvasField.GetLength(0); i += Constant.Size)
-            {
-                for (int j = 0; j < _canvasField.GetLength(1); j += Constant.Size)
-                {
-                    _canvasField[i, j] = null;
-                }
-            }
         }
     }
 }

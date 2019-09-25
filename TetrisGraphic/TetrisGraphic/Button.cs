@@ -13,7 +13,6 @@ namespace TetrisGraphic
 
         public Button(uint color, int width, int height, int coordX, int coordY, string text) : base(color, width, height, coordX, coordY, text)
         {
-            _textSize = 17;
         }
 
         public override void Update()

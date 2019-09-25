@@ -13,8 +13,6 @@ namespace TetrisGraphic
 
         public uint Color => _color;
 
-        public int CoordX { get { return _coordX; } set { _coordX = value; } }
-        public int CoordY { get { return _coordY; } set { _coordY = value; } }
 
         public int Width => _width;
         public int Height => _height;
@@ -63,7 +61,7 @@ namespace TetrisGraphic
 
         public MovingType HitWithCanvasResult()
         {
-            if (_coordY + _height >= _canvas.ClientHeigth)
+            if (_coordY + _height >= _canvas.ClientHeight)
             {
                 return MovingType.Stop;
             }

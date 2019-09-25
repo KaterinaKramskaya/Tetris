@@ -35,13 +35,14 @@ namespace TetrisGraphic
         private readonly Canvas background;
         private readonly Canvas backgroundFill;
 
-        private readonly FigureColors color;
-
         private Figure figure;
         private Figure figureNext;
 
         private readonly int startCoordX;
         private readonly int startCoordY;
+
+        private readonly int nextStartCoordX;
+        private readonly int nextStartCoordY;
 
         private Button pauseButton;
         private Button optionsButton;
@@ -61,14 +62,10 @@ namespace TetrisGraphic
             rnd = new Random();
             this.graphic = graphic;
 
-            color = new FigureColors();
-
-
             canvas = new Canvas
                 (Constant.CanvasColor, _clientHeight, _clientWidth, Constant.XOffset, Constant.YOffset + 2 * Constant.Size);
             grid = new Grid
                 (Constant.GridColor, _clientHeight + 2 * Constant.Size, _clientWidth, Constant.XOffset, Constant.YOffset + 2 * Constant.Size);
-
 
             canvasForNextFigure = new Canvas
                 (Constant.CanvasColor, 6 * Constant.Size + Constant.YOffset, 6 * Constant.Size + Constant.XOffset, _clientWidth + Constant.XOffset + 7, _clientWidth / 2 + 2 * Constant.YOffset);
@@ -76,7 +73,7 @@ namespace TetrisGraphic
                 (Constant.GridColor, 6 * Constant.Size + _clientWidth / 2 + 2 * Constant.YOffset, 6 * Constant.Size + _clientWidth + Constant.XOffset + 7, _clientWidth + Constant.XOffset + 7, _clientWidth / 2 + 2 * Constant.YOffset);
 
             background = new Canvas(0x98ffffff, _clientHeight + 4 * Constant.Size, 2 * _clientWidth, 0, 0);
-            backgroundFill = new Canvas(0xFFffffff, _clientHeight + 4 * Constant.Size, 2*_clientWidth, 0, 0);
+            backgroundFill = new Canvas(0xFFffffff, _clientHeight + 4 * Constant.Size, 2 * _clientWidth, 0, 0);
 
             canvasField = new CanvasField(_clientHeight + 2 * Constant.Size + 1, _clientWidth + 1);
 
@@ -85,6 +82,7 @@ namespace TetrisGraphic
 
             AddObject(canvas);
             AddObject(canvasForNextFigure);
+
             AddObject(grid);
             AddObject(gridForNextFigure);
 
@@ -93,20 +91,25 @@ namespace TetrisGraphic
             startCoordX = 3 * Constant.Size + Constant.XOffset;
             startCoordY = 2 * Constant.Size + Constant.YOffset;
 
-            figure = FigureCreator.RandomFigure(rnd, color, canvas, canvasField, startCoordX, startCoordY);
-            AddObject(figure);
+            nextStartCoordX = _clientWidth + Constant.XOffset + Constant.Size + 7;
+            nextStartCoordY = _clientWidth / 2 + 2 * Constant.YOffset + 2 * Constant.Size;
 
+            figure = FigureCreator.RandomFigure(rnd, canvas, canvasField, startCoordX, startCoordY);
+            AddObject(figure);
 
             GameContinue = true;
         }
 
         public void AddObject(GameObject obj)
         {
-            graphicObjects.Add(obj);
-
             if (obj is Figure)
             {
+                graphicObjects.Insert(graphicObjects.Count - 2, obj);
                 figures.Add(obj);
+            }
+            else
+            {
+                graphicObjects.Add(obj);
             }
         }
 
@@ -142,7 +145,7 @@ namespace TetrisGraphic
                     {
                         if (graphicObjects[i] is GameObject graphicObject)
                         {
-                            if (graphicObject != figureNext &&  !(graphicObject is Button))
+                            if (graphicObject != figureNext)
                             {
                                 graphicObject.Update();
                             }
@@ -150,16 +153,7 @@ namespace TetrisGraphic
                             graphicObject.Render(graphic);
                         }
                     }
-                    grid.Render(graphic);
-                    gridForNextFigure.Render(graphic);
                     DrawResults();
-
-                    pauseButton.Render(graphic);
-                    optionsButton.Render(graphic);
-
-                    pauseButton.Update();
-                    optionsButton.Update();
-
                     graphic.FlipPages();
                     Thread.Sleep(_speed);
 
@@ -199,7 +193,7 @@ namespace TetrisGraphic
         public void CreateNextFigure()
         {
             figureNext = FigureCreator.RandomFigure
-                (rnd, color, canvas, canvasField, _clientWidth + Constant.XOffset + Constant.Size + 7, _clientWidth / 2 + 2 * Constant.YOffset + 2 * Constant.Size);
+                (rnd, canvas, canvasField, nextStartCoordX, nextStartCoordY);
             AddObject(figureNext);
         }
 
@@ -290,7 +284,7 @@ namespace TetrisGraphic
             int width = Constant.TableSize;
 
             TextTable NameTable = new TextTable
-                (Constant.TetrisTableColor, width, height/2, Constant.XOffset, Constant.YOffset, "TETRIS");
+                (Constant.TetrisTableColor, width, height / 2, Constant.XOffset, Constant.YOffset, "TETRIS");
 
             TextTable RoundScoreTable = new RoundResultTable
                 (Constant.RoundScoreTableColor, width, height, _clientWidth + Constant.XOffset, Constant.YOffset, $"SCORE\n");
@@ -351,7 +345,7 @@ namespace TetrisGraphic
         public void GameOptions()
         {
             TextTable Options = new OptionsTable
-                (Constant.OptionsTableColor, _clientWidth - Constant.XOffset, _clientWidth - 2 * Constant.XOffset, Constant.XOffset + _clientWidth/3, Constant.YOffset + _clientHeight / 7, "");
+                (Constant.OptionsTableColor, _clientWidth - Constant.XOffset, _clientWidth - 2 * Constant.XOffset, Constant.XOffset + _clientWidth / 3, Constant.YOffset + _clientHeight / 7, "");
 
             background.Render(graphic);
             Options.Render(graphic);
