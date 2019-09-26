@@ -32,9 +32,9 @@ namespace TetrisGraphic
         {
             if (_cube1.CoordX < _cube2.CoordX
                 && _cube4.CoordY + _size + _size <= _canvas.ClientHeight
-                && _canvasField.CanvasFieldArray[_cube4.CoordY, _cube4.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY + _size, _cube4.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY - _size, _cube4.CoordX] == null)
+                && _canvasField.FindValueByCoords(_cube4.CoordX + _size, _cube4.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX + _size, _cube4.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX, _cube4.CoordY - _size) == 0)
             {
                 int coordX = _cube4.CoordX;
                 int coordY = _cube4.CoordY;
@@ -50,9 +50,9 @@ namespace TetrisGraphic
             }
             else if (_cube3.CoordY < _cube4.CoordY
                 && _cube4.CoordX - 2 * _size >= Constant.XOffset
-                && _canvasField.CanvasFieldArray[_cube4.CoordY + _size, _cube4.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY + _size, _cube4.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY, _cube4.CoordX + _size] == null)
+                && _canvasField.FindValueByCoords(_cube4.CoordX + _size, _cube4.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX - _size, _cube4.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX + _size, _cube4.CoordY) == 0)
             {
                 int coordX = _cube4.CoordX;
                 int coordY = _cube4.CoordY;
@@ -68,9 +68,9 @@ namespace TetrisGraphic
             }
             else if (_cube1.CoordX > _cube2.CoordX
                 && _cube4.CoordY - _size >= Constant.YOffset
-                && _canvasField.CanvasFieldArray[_cube4.CoordY, _cube4.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY - _size, _cube4.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY + _size, _cube4.CoordX] == null)
+                && _canvasField.FindValueByCoords(_cube4.CoordX - _size, _cube4.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX - _size, _cube4.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX, _cube4.CoordY + _size) == 0)
             {
                 int coordX = _cube4.CoordX;
                 int coordY = _cube4.CoordY;
@@ -86,9 +86,9 @@ namespace TetrisGraphic
             }
             else if (_cube3.CoordY > _cube4.CoordY
                 && _cube4.CoordY + _size + _size <= _canvas.ClientWidth
-                && _canvasField.CanvasFieldArray[_cube4.CoordY - _size, _cube4.CoordX] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY - _size, _cube4.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube4.CoordY, _cube4.CoordX - _size] == null)
+                && _canvasField.FindValueByCoords(_cube4.CoordX, _cube4.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX + _size, _cube4.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube4.CoordX - _size, _cube4.CoordY) == 0)
             {
                 int coordX = _cube4.CoordX;
                 int coordY = _cube4.CoordY;

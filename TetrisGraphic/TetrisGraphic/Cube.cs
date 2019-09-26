@@ -13,7 +13,6 @@ namespace TetrisGraphic
 
         public uint Color => _color;
 
-
         public int Width => _width;
         public int Height => _height;
 
@@ -76,20 +75,20 @@ namespace TetrisGraphic
             return MovingType.WithoutLimits;
         }
 
-        public MovingType HitWithFigureResult(Cube[,] canvasField)
+        public MovingType HitWithFigureResult(CanvasField canvasField)
         {
-            if (_coordX >= _width && _coordX <= canvasField.GetLength(1) - _width && _coordY >= 0
-                && _coordY <= canvasField.GetLength(0) - _height)
+            if (_coordX >= _width && _coordX <= _canvas.ClientWidth - _width && _coordY >= 0
+                && _coordY <= _canvas.ClientHeight - _height)
             {
-                if (canvasField[_coordY + _height, _coordX] != null)
+                if (canvasField.FindValueByCoords(_coordX, _coordY + _height) != 0)
                 {
                     return MovingType.Stop;
                 }
-                if (canvasField[_coordY + _height, _coordX + _width] != null)
+                if (canvasField.FindValueByCoords(_coordX + _width, _coordY + _height) != 0)
                 {
                     return MovingType.OnlyLeft;
                 }
-                if (canvasField[_coordY + _height, _coordX - _width] != null)
+                if (canvasField.FindValueByCoords(_coordX - _width, _coordY + _height) != 0)
                 {
                     return MovingType.OnlyRight;
                 }

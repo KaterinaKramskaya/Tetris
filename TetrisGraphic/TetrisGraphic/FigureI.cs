@@ -33,23 +33,22 @@ namespace TetrisGraphic
             if (_cube1.CoordX < _cube2.CoordX
                 && _cube1.CoordY + (3 * _size) + _size <= _canvas.ClientHeight
                 && _cube1.CoordX + (3 * _size) <= _canvas.ClientWidth
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + (2 * _size), _cube1.CoordX] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + (3 * _size), _cube1.CoordX] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY + (2 * _size)) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY + (3 * _size)) == 0
 
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX + 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY + _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX + 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY + 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY + 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY + 2 * _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX + 3 * _size] == null)
-
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY + 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY + 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY + 3 * _size) == 0)
             {
                 int coordX = _cube1.CoordX;
                 int coordY = _cube1.CoordY;
@@ -65,22 +64,22 @@ namespace TetrisGraphic
             }
             else if (_cube1.CoordY < _cube2.CoordY
                 && _cube1.CoordX - 3 * _size >= Constant.XOffset
-                && (_canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX - 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY) == 0
 
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + _size, _cube1.CoordX - 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY + _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY + _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 2 * _size, _cube1.CoordX - 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY + 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY + 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY + 2 * _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY + 3 * _size, _cube1.CoordX - 3 * _size] == null))
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY + 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY + 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY + 3 * _size) == 0)
             {
                 int coordX = _cube1.CoordX;
                 int coordY = _cube1.CoordY;
@@ -96,22 +95,22 @@ namespace TetrisGraphic
             }
             else if (_cube1.CoordX > _cube2.CoordX
                 && _cube1.CoordY - 3 * _size >= Constant.YOffset
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 1 * _size, _cube1.CoordX] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY - 1 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY - 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX, _cube1.CoordY - 3 * _size) == 0
 
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX - 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY - _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX - 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY - 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY - 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY - 2 * _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX - _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX - 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX - 3 * _size] == null)
+                && _canvasField.FindValueByCoords(_cube1.CoordX - _size, _cube1.CoordY - 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 2 * _size, _cube1.CoordY - 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX - 3 * _size, _cube1.CoordY - 3 * _size) == 0)
             {
                 int coordX = _cube1.CoordX;
                 int coordY = _cube1.CoordY;
@@ -127,22 +126,22 @@ namespace TetrisGraphic
             }
             else if (_cube1.CoordY > _cube2.CoordY
                 && _cube1.CoordX + 3 * _size + _size <= _canvas.ClientWidth
-                && _canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY, _cube1.CoordX + 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY) == 0
 
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - _size, _cube1.CoordX + 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY - _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY - _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 2 * _size, _cube1.CoordX + 3 * _size] == null
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY - 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY - 2 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY - 2 * _size) == 0
 
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX + _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX + 2 * _size] == null
-                && _canvasField.CanvasFieldArray[_cube1.CoordY - 3 * _size, _cube1.CoordX + 3 * _size] == null)
+                && _canvasField.FindValueByCoords(_cube1.CoordX + _size, _cube1.CoordY - 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 2 * _size, _cube1.CoordY - 3 * _size) == 0
+                && _canvasField.FindValueByCoords(_cube1.CoordX + 3 * _size, _cube1.CoordY - 3 * _size) == 0)
             {
                 int coordX = _cube1.CoordX;
                 int coordY = _cube1.CoordY;

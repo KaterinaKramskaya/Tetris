@@ -176,7 +176,7 @@ namespace TetrisGraphic
                 if (cube != null)
                 {
                     if (cube.HitWithCanvasResult() == MovingType.Stop ||
-                        cube.HitWithFigureResult(_canvasField.CanvasFieldArray) == MovingType.Stop)
+                        cube.HitWithFigureResult(_canvasField) == MovingType.Stop)
                     {
                         result = true;
                         break;
@@ -198,7 +198,7 @@ namespace TetrisGraphic
                 if (cube != null)
                 {
                     if (cube.HitWithCanvasResult() == MovingType.OnlyRight
-                        || cube.HitWithFigureResult(_canvasField.CanvasFieldArray) == MovingType.OnlyRight)
+                        || cube.HitWithFigureResult(_canvasField) == MovingType.OnlyRight)
                     {
                         result = true;
                         break;
@@ -221,7 +221,7 @@ namespace TetrisGraphic
                 if (cube != null)
                 {
                     if (cube.HitWithCanvasResult() == MovingType.OnlyLeft
-                        || cube.HitWithFigureResult(_canvasField.CanvasFieldArray) == MovingType.OnlyLeft)
+                        || cube.HitWithFigureResult(_canvasField) == MovingType.OnlyLeft)
                     {
                         result = true;
                         break;
@@ -243,8 +243,8 @@ namespace TetrisGraphic
             {
                 if (cube != null)
                 {
-                    if ((HitRightBoard() && cube.HitWithFigureResult(_canvasField.CanvasFieldArray) == MovingType.OnlyRight)
-                        || (HitLeftBoard() && cube.HitWithFigureResult(_canvasField.CanvasFieldArray) == MovingType.OnlyLeft))
+                    if ((HitRightBoard() && cube.HitWithFigureResult(_canvasField) == MovingType.OnlyRight)
+                        || (HitLeftBoard() && cube.HitWithFigureResult(_canvasField) == MovingType.OnlyLeft))
                     {
                         result = true;
                         break;

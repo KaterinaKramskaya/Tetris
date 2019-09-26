@@ -12,6 +12,8 @@ namespace TetrisGraphic
         public const int XOffset = 20;
         public const int YOffset = 20;
 
+        public const int CellCount = 10;
+
         public const int TableSize = Size * 3;
 
         public const uint CanvasColor = 0xFFdedede;

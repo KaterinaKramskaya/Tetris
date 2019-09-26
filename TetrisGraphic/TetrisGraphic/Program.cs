@@ -15,6 +15,7 @@ namespace TetrisGraphic
     {      
         // 1. struct => входящий параметр для объектов
         // 2. изменить начало игры (обнулять предыдущую игру перед началом следующей)
+        // 3. массив 320х320 -> 10x10:- исправить ClearLine, LineToClear (GameEngine)
 
 
         static void Main(string[] args)

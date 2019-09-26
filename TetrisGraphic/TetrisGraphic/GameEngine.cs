@@ -25,7 +25,7 @@ namespace TetrisGraphic
         private readonly int _clientHeight;
         private readonly int _clientWidth;
 
-        private readonly CanvasField canvasField;
+        private readonly CanvasField canvasField; 
 
         private readonly Grid grid;
         private readonly Grid gridForNextFigure;
@@ -75,7 +75,7 @@ namespace TetrisGraphic
             background = new Canvas(0x98ffffff, _clientHeight + 4 * Constant.Size, 2 * _clientWidth, 0, 0);
             backgroundFill = new Canvas(0xFFffffff, _clientHeight + 4 * Constant.Size, 2 * _clientWidth, 0, 0);
 
-            canvasField = new CanvasField(_clientHeight + 2 * Constant.Size + 1, _clientWidth + 1);
+            canvasField = new CanvasField(); ////////
 
             ResultTables();
             Buttons();
@@ -197,9 +197,9 @@ namespace TetrisGraphic
             AddObject(figureNext);
         }
 
-        public bool NeedToClearLine()
+        public bool NeedToClearLine() //////
         {
-            Cube[,] array = canvasField.CanvasFieldArray;
+            FieldCell[,] array = canvasField.CanvasFieldArray;
 
             for (int i = Constant.YOffset; i < array.GetLength(0); i += 30)
             {
@@ -207,10 +207,10 @@ namespace TetrisGraphic
 
                 for (int j = Constant.XOffset; j < array.GetLength(1); j += 30)
                 {
-                    if (array[i, j] != null)
-                    {
-                        result += 30;
-                    }
+                    //if (array[i, j] != null)
+                    //{
+                    //    result += 30;
+                    //}
                 }
                 if (result == array.GetLength(1) - 1)
                 {
@@ -221,7 +221,7 @@ namespace TetrisGraphic
             return false;
         }
 
-        public void ClearLine()
+        public void ClearLine() //////
         {
             for (int i = 0; i < figures.Count; i++)
             {
