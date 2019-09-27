@@ -49,7 +49,7 @@ namespace TetrisGraphic
 
         public void CreateCanvasField()
         {
-            _canvasField = new FieldCell[_height, _width]; // 10x10
+            _canvasField = new FieldCell[_height, _width]; 
 
             for (int i = 0; i < _height; i++, Y += Constant.Size)
             {
@@ -66,9 +66,9 @@ namespace TetrisGraphic
         {
             int value = 0;
 
-            for (int i = 0; i < _height; i++, Y += Constant.Size)
+            for (int i = 0; i < _height; i++)
             {
-                for (int j = 0; j < _width; j++, X += Constant.Size)
+                for (int j = 0; j < _width; j++)
                 {
                     if (_canvasField[i, j].coordX == coordX && _canvasField[i, j].coordY == coordY)
                     {
@@ -80,6 +80,49 @@ namespace TetrisGraphic
             }
 
             return value;
+        }
+
+        public int LineToClear()
+        {
+            int lineToClear = -1;
+
+            for (int i = 0; i < _height; i++)
+            {
+                int result = 0;
+                for (int j = 0; j < _width; j++)
+                {
+                    if (_canvasField[i, j].value != 0)
+                    {
+                        result += 1;
+                    }
+                }
+                if (result == Constant.CellCount)
+                {
+                    return lineToClear = _canvasField[i, 0].coordY;
+                }
+                X = Constant.XOffset;
+            }
+
+            return lineToClear;
+        }
+
+        public void ClearLines(int lineToClear)
+        {
+            for (int i = 0; i < _height; i++)
+            {
+                if (_canvasField[i, 0].coordY <= lineToClear)
+                {
+                    for (int j = 0; j < _width; j++)
+                    {
+                        _canvasField[i, j].value = 0;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                X = Constant.XOffset;
+            }
         }
     }
 }

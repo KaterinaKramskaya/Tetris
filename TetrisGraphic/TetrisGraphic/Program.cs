@@ -13,10 +13,13 @@ namespace TetrisGraphic
 {
     class Program
     {      
-        // 1. struct => входящий параметр для объектов
-        // 2. изменить начало игры (обнулять предыдущую игру перед началом следующей)
-        // 3. массив 320х320 -> 10x10:- исправить ClearLine, LineToClear (GameEngine)
+        // 1. exception (out of memory) при InsertObj
 
+        // 2. изменить начало игры (обнулять предыдущую игру перед началом следующей)
+
+        // 3. переворот фигур в CanvasField
+
+        // 4. проблема с очищением линий
 
         static void Main(string[] args)
         { 

@@ -9,19 +9,19 @@ namespace TetrisGraphic
 {
     class Grid : GameObject
     {
-        public Grid(uint color, int height, int width, int coordX, int coordY) : base(color, height, width, coordX, coordY)
+        public Grid(GameObjectParametres parametres) : base(parametres)
         {
         }
 
         public override void Render(ConsoleGraphics graphic)
         {
-            for (int i = _coordX; i <= _width; i += _size)
+            for (int i = CoordX; i <= Width; i += _size)
             { 
-                graphic.DrawLine(_color, i, _coordY, i, _height);
+                graphic.DrawLine(Color, i, CoordY, i, Height);
             }
-            for (int i = _coordY; i <= _height; i += _size)
+            for (int i = CoordY; i <= Height; i += _size)
             {
-                graphic.DrawLine(_color, _coordX, i, _width, i);
+                graphic.DrawLine(Color, CoordX, i, Width, i);
             }
         }
     }

@@ -7,11 +7,12 @@ using NConsoleGraphics;
 
 namespace TetrisGraphic
 {
-    class Button : TextTable
+    class Button : TitleTable
     {
         public event Action Click;
 
-        public Button(uint color, int width, int height, int coordX, int coordY, string text) : base(color, width, height, coordX, coordY, text)
+        public Button(GameObjectParametres parametres, string text, int YOffset) 
+            : base(parametres, text, YOffset)
         {
         }
 
@@ -19,7 +20,7 @@ namespace TetrisGraphic
         {
             int x = Input.MouseX;
             int y = Input.MouseY;
-            if (Input.IsMouseLeftButtonDown && (IsInObject(x, y)))
+            if (Input.IsMouseLeftButtonDown && IsInObject(x, y))
             {
                 Click?.Invoke();
             }

@@ -7,88 +7,51 @@ using NConsoleGraphics;
 
 namespace TetrisGraphic
 {
-    public class TextTable : GameObject
+    public class TitleTable : GameObject
     {
-        protected string _text;
-        protected int _textSize = 17;
-        protected int _XOffset = 5;
-        protected int _YOffset;
+        protected string _title;
+        protected int _titleSize = 17;
 
-        public TextTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, height, width, coordX, coordY)
+        protected int _XOffset;
+        protected int _YOffset = 7;
+
+        public TitleTable(GameObjectParametres parametres, string title, int XOffset) 
+            : base(parametres)
         {
-            _text = text;
-            _YOffset = _height / 6;
+            _title = title;
+            _XOffset = XOffset;
+        }
+
+        public TitleTable(GameObjectParametres parametres, string title, int XOffset, int textSize)
+            : base(parametres)
+        {
+            _title = title;
+            _XOffset = XOffset;
+            _titleSize = textSize;
         }
 
         public override void Render(ConsoleGraphics graphic)
         {
             base.Render(graphic);
-            graphic.DrawString(_text, Constant.Font, Constant.FontColor, _coordX + _XOffset, _coordY + _YOffset, _textSize);
+            graphic.DrawString(_title, Constant.Font, Constant.FontColor, CoordX + _XOffset, CoordY + _YOffset, _titleSize);
         }
     }
 
-    public class GameOverTable : TextTable
+    public class TitleTableWithText : TitleTable
     {
-        public GameOverTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, width, height, coordX, coordY, text)
-        {
-            _color = Constant.GameOverTableColor;
-            _textSize = 32;
-            _XOffset = _width / 6;
-        }
-    }
+        private string _text;
+        private int _textSize = 14;
 
-    public class RoundResultTable : TextTable
-    {
-        public RoundResultTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, width, height, coordX, coordY, text)
+        public TitleTableWithText(GameObjectParametres parametres, string title, int XOffset, string text) 
+            : base(parametres, title, XOffset)
         {
             _text = text;
-            _color = Constant.RoundScoreTableColor;
-            _XOffset = _width / 25;
         }
-    }
 
-    public class BestResultTable : TextTable
-    {
-        public BestResultTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, width, height, coordX, coordY, text)
-        {
-            _XOffset = _width / 6;
-            _YOffset = _height / 6;
-        }
-    }
-
-    public class ClearedLinesTable : TextTable
-    {
-        public ClearedLinesTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, width, height, coordX, coordY, text)
-        {
-            _XOffset = _width / 30;
-        }
-    }
-
-    public class OptionsTable : TextTable
-    {
-        private string _title;
-        private int _titleSize;
-
-        public OptionsTable(uint color, int width, int height, int coordX, int coordY, string text) 
-            : base(color, width, height, coordX, coordY, text)
-        {
-            _title = "OPTIONS\n";
-            _titleSize = 17;
-            _text += "\n\n MOVE RIGHT  -  RIGHT ARROW\n\n MOVE LEFT  -  LEFT ARROW\n\n ROTATE FIGURE  -  SPACE\n\n SOFT DROP  -  UP ARROW\n\n HARD DROP  -  DOWN ARROW";
-
-            _textSize = 14;
-            _XOffset = _width / 12;
-            _YOffset = _height / 12;
-        }
         public override void Render(ConsoleGraphics graphic)
         {
             base.Render(graphic);
-            graphic.DrawString(_title, Constant.Font, Constant.FontColor, _coordX + 5 * Constant.XOffset, _coordY + Constant.YOffset, _titleSize);
+            graphic.DrawString(_text, Constant.Font, Constant.FontColor, CoordX + _XOffset, CoordY + _YOffset, _textSize);
         }
     }
 }

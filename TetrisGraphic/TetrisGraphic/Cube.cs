@@ -11,19 +11,14 @@ namespace TetrisGraphic
     {
         private readonly Canvas _canvas;
 
-        public uint Color => _color;
-
-        public int Width => _width;
-        public int Height => _height;
-
-        public Cube(uint color, int coordX, int coordY, Canvas canvas) : base(color, Constant.Size, Constant.Size, coordX, coordY)
+        public Cube(GameObjectParametres parametres, Canvas canvas) : base(parametres)
         {
             _canvas = canvas;
         }
 
         public override void Update()
         {
-            _coordY += _height;
+            CoordY += _size;
         }
 
         public override void Update(MovingType movingType)
@@ -32,43 +27,43 @@ namespace TetrisGraphic
             {
                 if (Input.IsKeyDown(Keys.LEFT))
                 {
-                    _coordX -= _width;
+                    CoordX -= _size;
                 }
 
                 else if (Input.IsKeyDown(Keys.RIGHT))
                 {
-                    _coordX += _width;
+                    CoordX += _size;
                 }
             }
             else if (movingType == MovingType.OnlyLeft)
             {
                 if (Input.IsKeyDown(Keys.LEFT))
                 {
-                    _coordX -= _width;
+                    CoordX -= _size;
                 }
             }
             else if (movingType == MovingType.OnlyRight)
             {
                 if (Input.IsKeyDown(Keys.RIGHT))
                 {
-                    _coordX += _width;
+                    CoordX += _size;
                 }
             }
 
-            _coordY += _height;
+             CoordY += _size;
         }
 
         public MovingType HitWithCanvasResult()
         {
-            if (_coordY + _height >= _canvas.ClientHeight)
+            if (CoordY + _size >= _canvas.ClientHeight)
             {
                 return MovingType.Stop;
             }
-            if (_coordX + _width >= _canvas.ClientWidth)
+            if (CoordX + _size >= _canvas.ClientWidth)
             {
                 return MovingType.OnlyLeft;
             }
-            if (_coordX <= Constant.XOffset)
+            if (CoordX <= Constant.XOffset)
             {
                 return MovingType.OnlyRight;
             }
@@ -77,18 +72,18 @@ namespace TetrisGraphic
 
         public MovingType HitWithFigureResult(CanvasField canvasField)
         {
-            if (_coordX >= _width && _coordX <= _canvas.ClientWidth - _width && _coordY >= 0
-                && _coordY <= _canvas.ClientHeight - _height)
+            if (CoordX >= _size && CoordX <= _canvas.ClientWidth - _size && CoordY >= 0
+                && CoordY <= _canvas.ClientHeight - _size)
             {
-                if (canvasField.FindValueByCoords(_coordX, _coordY + _height) != 0)
+                if (canvasField.FindValueByCoords(CoordX, CoordY + _size) != 0)
                 {
                     return MovingType.Stop;
                 }
-                if (canvasField.FindValueByCoords(_coordX + _width, _coordY + _height) != 0)
+                if (canvasField.FindValueByCoords(CoordX + _size, CoordY + _size) != 0)
                 {
                     return MovingType.OnlyLeft;
                 }
-                if (canvasField.FindValueByCoords(_coordX - _width, _coordY + _height) != 0)
+                if (canvasField.FindValueByCoords(CoordX - _size, CoordY + _size) != 0)
                 {
                     return MovingType.OnlyRight;
                 }

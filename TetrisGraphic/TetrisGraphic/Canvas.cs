@@ -15,10 +15,11 @@ namespace TetrisGraphic
         public int ClientHeight { get { return _clientHeight; } }
         public int ClientWidth { get { return _clientWidth; } }
 
-        public Canvas(uint color, int height, int width, int coordX, int coordY) : base(color, height, width, coordX, coordY)
+        public Canvas(GameObjectParametres parametres) 
+            : base(parametres)
         {
-            _height = height - Constant.YOffset;
-            _width = width - Constant.XOffset;
+            int _height = Height - Constant.YOffset;
+            int _width = Width - Constant.XOffset;
 
             _clientHeight = _height + 2 * Constant.Size + Constant.XOffset;
             _clientWidth = _width + Constant.YOffset;

@@ -11,27 +11,27 @@ namespace TetrisGraphic
     {
         protected int _size = Constant.Size;
 
-        protected uint _color;
-        protected int _width;
-        protected int _height;
+        protected GameObjectParametres _parametres;
 
-        protected int _coordX;
-        protected int _coordY;
+        public int CoordX { get { return _parametres.CoordX; } set { _parametres.CoordX = value; } }
+        public int CoordY { get { return _parametres.CoordY; } set { _parametres.CoordY = value; } }
 
-        public int CoordX { get { return _coordX; } set { _coordX = value; } }
-        public int CoordY { get { return _coordY; } set { _coordY = value; } }
+        public uint Color { get => _parametres.Color; set => _parametres.Color = value; }
+
+        public int Width => _parametres.Width;
+        public int Height => _parametres.Height;
 
         protected GameObject()
         {
         }
 
-        protected GameObject(uint color, int height, int width, int coordX, int coordY)
+        protected GameObject(GameObjectParametres parametres)
         {
-            _color = color;
-            _height = height;
-            _width = width;
-            _coordX = coordX;
-            _coordY = coordY;
+            _parametres.Color = parametres.Color;
+            _parametres.Height = parametres.Height;
+            _parametres.Width = parametres.Width;
+            _parametres.CoordX = parametres.CoordX;
+            _parametres.CoordY = parametres.CoordY;
         }
 
         public virtual void Update()
@@ -44,9 +44,12 @@ namespace TetrisGraphic
 
         public virtual void Render(ConsoleGraphics graphic)
         {
-            graphic.FillRectangle(_color, _coordX, _coordY, _width, _height);
+            graphic.FillRectangle(Color, CoordX, CoordY, Width, Height);
         }
 
-        public bool IsInObject(int x, int y) => x >= _coordX && x <= _coordX + _width && y >= _coordY && y <= _coordY + _height;
+        public bool IsInObject(int x, int y) =>
+            x >= _parametres.CoordX
+            && x <= _parametres.CoordX + _parametres.Width
+            && y >= _parametres.CoordY && y <= _parametres.CoordY + _parametres.Height;
     }
 }

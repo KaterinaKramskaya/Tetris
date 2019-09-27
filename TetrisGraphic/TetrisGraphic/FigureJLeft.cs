@@ -16,16 +16,20 @@ namespace TetrisGraphic
 
         public override void SetCubesCoords()
         {
-            _cube1 = new Cube(_color, _startCoordX, _startCoordY, _canvas);
-            _cube2 = new Cube(_color, _startCoordX + _size, _startCoordY, _canvas);
-            _cube3 = new Cube(_color, _startCoordX + 2 * _size, _startCoordY, _canvas);
-            _cube4 = new Cube(_color, _startCoordX + 2 * _size, _startCoordY + _size, _canvas);
-        }
+            _cube1 = new Cube(new GameObjectParametres()
+            { Color = this.Color, CoordX = _startCoordX, CoordY = _startCoordY, Height = _size, Width = _size },
+                              _canvas);
+            _cube2 = new Cube(new GameObjectParametres()
+            { Color = this.Color, CoordX = _startCoordX + _size, CoordY = _startCoordY, Height = _size, Width = _size },
+                              _canvas);
 
-        public override Cube[,] CreateCubesArray()
-        {
-            return _figure = new Cube[,]{ {_cube1, _cube2, _cube3, },
-                                      { null, null, _cube4 },};
+            _cube3 = new Cube(new GameObjectParametres()
+            { Color = this.Color, CoordX = _startCoordX + 2 * _size, CoordY = _startCoordY, Height = _size, Width = _size },
+                              _canvas);
+
+            _cube4 = new Cube(new GameObjectParametres()
+            { Color = this.Color, CoordX = _startCoordX + 2 * _size, CoordY = _startCoordY + _size, Height = _size, Width = _size },
+                              _canvas);
         }
 
         public override void Rotate()

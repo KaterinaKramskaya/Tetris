@@ -13,13 +13,13 @@ namespace TetrisGraphic
         protected int _startCoordX;
         protected int _startCoordY;
 
-        protected Cube[,] _figure;
+        protected Cube[] _figure;
 
-        public Cube[,] FigureArray
+        public Cube[] FigureArray
         {
             get
             {
-                Cube[,] figure = _figure;
+                Cube[] figure = _figure;
                 return figure;
             }
         }
@@ -39,7 +39,8 @@ namespace TetrisGraphic
             _startCoordX = startCoordX;
             _startCoordY = startCoordY;
 
-            _color = color;
+            Color = color;
+
             _canvasField = canvasField;
             _canvas = canvas;
         }
@@ -59,16 +60,17 @@ namespace TetrisGraphic
 
         public void ClearCubesArray()
         {
-            for (int i = 0; i < _figure.GetLength(0); i++)
+            for (int i = 0; i < _figure.Length; i++)
             {
-                for (int j = 0; j < _figure.GetLength(1); j++)
-                {
-                    _figure[i, j] = null;
-                }
+                _figure[i] = null;
+
             }
         }
 
-        public abstract Cube[,] CreateCubesArray();
+        public Cube[] CreateCubesArray()
+        {
+            return _figure = new Cube[] { _cube1, _cube2, _cube3, _cube4 };
+        }
 
         public abstract void Rotate();
 
@@ -82,27 +84,25 @@ namespace TetrisGraphic
             MovingType movingType = MovingTypeResult();
             bool shouldToStop = HitBottomBoard();
 
-            for (int i = 0; i < _figure.GetLength(0); i++)
+            for (int i = 0; i < _figure.Length; i++)
             {
-                for (int j = 0; j < _figure.GetLength(1); j++)
+                if (_figure[i] != null && !shouldToStop)
                 {
-                    if (_figure[i, j] != null && !shouldToStop)
+                    if (movingType == MovingType.OnlyDown)
                     {
-                        if (movingType == MovingType.OnlyDown)
-                        {
-                            _figure[i, j].Update();
-                        }
-                        else
-                        {
-                            _figure[i, j].Update(movingType);
-                            FigureStoppedMove = false;
-                        }
+                        _figure[i].Update();
                     }
-                    else if (shouldToStop)
+                    else
                     {
-                        FigureStoppedMove = true;
+                        _figure[i].Update(movingType);
+                        FigureStoppedMove = false;
                     }
                 }
+                else if (shouldToStop)
+                {
+                    FigureStoppedMove = true;
+                }
+
             }
         }
 
@@ -132,14 +132,11 @@ namespace TetrisGraphic
 
         public override void Render(ConsoleGraphics graphic)
         {
-            for (int i = 0; i < _figure.GetLength(0); i++)
+            for (int i = 0; i < _figure.Length; i++)
             {
-                for (int j = 0; j < _figure.GetLength(1); j++)
+                if (_figure[i] != null)
                 {
-                    if (_figure[i, j] != null)
-                    {
-                        _figure[i, j].Render(graphic);
-                    }
+                    _figure[i].Render(graphic);
                 }
             }
         }
@@ -154,17 +151,13 @@ namespace TetrisGraphic
 
         public void ClearFigureLine(int lineToClear)
         {
-            for (int i = 0; i < _figure.GetLength(0); i++)
+            for (int i = 0; i < _figure.Length; i++)
             {
-                for (int j = 0; j < _figure.GetLength(1); j++)
+                if (_figure[i] != null && _figure[i].CoordY == lineToClear)
                 {
-                    if (_figure[i, j] != null && _figure[i, j].CoordY == lineToClear)
-                    {
-                        _figure[i, j] = null;
-                    }
+                    _figure[i] = null;
                 }
             }
-            FillFigureFields();
         }
 
         protected bool HitBottomBoard()
