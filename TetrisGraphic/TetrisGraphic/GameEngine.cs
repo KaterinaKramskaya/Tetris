@@ -186,7 +186,7 @@ namespace TetrisGraphic
         {
             if (obj is Figure)
             {
-                gameObjects.Insert(gameObjects.Count - 2, obj); // OutOfMemory ex? 
+                gameObjects.Insert(gameObjects.Count - 2, obj); 
                 figures.Add(obj);
             }
             else
