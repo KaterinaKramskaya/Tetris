@@ -11,32 +11,11 @@ namespace TetrisGraphic
 {
     public class GameEngine
     {
-        private readonly ConsoleGraphics graphic;
-        private readonly Random rnd;
-
-        private MyList graphicObjects = new MyList();
-        private MyList figures = new MyList();
-
-        private int _bestResult = BestResultKeeper.BestResult;
-        private int _clearedLines;
-        private int _points;
-        private int _lineToClear;
-
         private readonly int _clientHeight;
         private readonly int _clientWidth;
 
-        private readonly CanvasField canvasField;
-
-        private readonly Grid grid;
-        private readonly Grid gridForNextFigure;
-
-        private readonly Canvas canvas;
-        private readonly Canvas canvasForNextFigure;
-        private readonly Canvas background;
-        private readonly Canvas backgroundFill;
-
-        private Figure figure;
-        private Figure figureNext;
+        private readonly ConsoleGraphics graphic;
+        private readonly Random rnd;
 
         private readonly int startCoordX;
         private readonly int startCoordY;
@@ -44,23 +23,65 @@ namespace TetrisGraphic
         private readonly int nextStartCoordX;
         private readonly int nextStartCoordY;
 
+        private MyList gameObjects = new MyList();
+        private MyList figures = new MyList();
+
+        private int _bestResult = BestResultKeeper.BestResult;
+        private int _clearedLines;
+        private int _points;
+        private int _lineToClear;
+
+        private CanvasField canvasField;
+
+        private Grid grid;
+        private Grid gridForNextFigure;
+
+        private Canvas canvas;
+        private Canvas canvasForNextFigure;
+        private Canvas background;
+        private Canvas backgroundFill;
+
+        private Figure figure;
+        private Figure figureNext;
+
         private Button pauseButton;
         private Button optionsButton;
 
-        private int _speed;
+        private TitleTable NameTable;
+        private TitleTable RoundScoreTable;
+        private TitleTable BestScoreTable;
+        private TitleTable ClearedLinesTable;
 
+        private int _speed;
         private bool GameContinue;
+
 
         public GameEngine(ConsoleGraphics graphic, int сlientHeight, int сlientWidth)
         {
-            _points = 0;
-            _clearedLines = 0;
-
             _clientHeight = сlientHeight;
             _clientWidth = сlientWidth;
 
             rnd = new Random();
             this.graphic = graphic;
+
+            startCoordX = 3 * Constant.Size + Constant.XOffset;
+            startCoordY = 2 * Constant.Size + Constant.YOffset;
+
+            nextStartCoordX = _clientWidth + Constant.XOffset + Constant.Size + 7;
+            nextStartCoordY = _clientWidth / 2 + 2 * Constant.YOffset + 2 * Constant.Size;
+
+            ResultTables();
+            Buttons();
+
+            InitNewGame();
+        }
+
+        public void InitNewGame()
+        {
+            _points = 0;
+            _clearedLines = 0;
+
+            _speed = 450;
 
             canvas = new Canvas(
                 new GameObjectParametres()
@@ -111,7 +132,7 @@ namespace TetrisGraphic
                     Height = _clientHeight + 4 * Constant.Size,
                     Width = 2 * _clientWidth
                 });
-                
+
             backgroundFill = new Canvas(new GameObjectParametres()
             {
                 Color = 0xFFffffff,
@@ -121,24 +142,21 @@ namespace TetrisGraphic
                 Width = 2 * _clientWidth
             });
 
-            canvasField = new CanvasField(); ////////
-
-            ResultTables();
-            Buttons();
+            canvasField = new CanvasField();
 
             AddObject(canvas);
             AddObject(canvasForNextFigure);
 
+            AddObject(pauseButton);
+            AddObject(optionsButton);
+
+            AddObject(NameTable);
+            AddObject(RoundScoreTable);
+            AddObject(BestScoreTable);
+            AddObject(ClearedLinesTable);
+
             AddObject(grid);
             AddObject(gridForNextFigure);
-
-            _speed = 450;
-
-            startCoordX = 3 * Constant.Size + Constant.XOffset;
-            startCoordY = 2 * Constant.Size + Constant.YOffset;
-
-            nextStartCoordX = _clientWidth + Constant.XOffset + Constant.Size + 7;
-            nextStartCoordY = _clientWidth / 2 + 2 * Constant.YOffset + 2 * Constant.Size;
 
             figure = FigureCreator.RandomFigure(rnd, canvas, canvasField, startCoordX, startCoordY);
             AddObject(figure);
@@ -146,16 +164,34 @@ namespace TetrisGraphic
             GameContinue = true;
         }
 
+        public void ClearPreviousGame()
+        {
+            gameObjects.Clear();
+            figures.Clear();
+
+            grid = null;
+            gridForNextFigure = null;
+
+            canvas = null;
+            canvasForNextFigure = null;
+            background = null;
+            backgroundFill = null;
+
+            figure = null;
+            figureNext = null;
+        }
+
+
         public void AddObject(GameObject obj)
         {
             if (obj is Figure)
             {
-                graphicObjects.Insert(graphicObjects.Count - 2, obj);
+                gameObjects.Insert(gameObjects.Count - 2, obj); // OutOfMemory ex? 
                 figures.Add(obj);
             }
             else
             {
-                graphicObjects.Add(obj);
+                gameObjects.Add(obj);
             }
         }
 
@@ -187,9 +223,9 @@ namespace TetrisGraphic
                     ChangeSpeed();
                     RotateFigure();
 
-                    for (int i = 0; i < graphicObjects.Count; i++)
+                    for (int i = 0; i < gameObjects.Count; i++)
                     {
-                        if (graphicObjects[i] is GameObject graphicObject)
+                        if (gameObjects[i] is GameObject graphicObject)
                         {
                             if (graphicObject != figureNext)
                             {
@@ -323,7 +359,7 @@ namespace TetrisGraphic
             int height = Constant.TableSize;
             int width = Constant.TableSize;
 
-            TitleTable NameTable = new TitleTable(
+            NameTable = new TitleTable(
                 new GameObjectParametres()
                 {
                     Color = Constant.TetrisTableColor,
@@ -336,7 +372,7 @@ namespace TetrisGraphic
                 7);
 
 
-            TitleTable RoundScoreTable = new TitleTable(
+            RoundScoreTable = new TitleTable(
                 new GameObjectParametres()
                 {
                     Color = Constant.RoundScoreTableColor,
@@ -349,7 +385,7 @@ namespace TetrisGraphic
                 7);
 
 
-            TitleTable BestScoreTable = new TitleTable(
+            BestScoreTable = new TitleTable(
                 new GameObjectParametres()
                 {
                     Color = Constant.BestScoreTableColor,
@@ -362,7 +398,7 @@ namespace TetrisGraphic
                 15);
 
 
-            TitleTable ClearedLinesTable = new TitleTable(
+            ClearedLinesTable = new TitleTable(
                 new GameObjectParametres()
                 {
                     Color = Constant.LineCountTableColor,
@@ -373,11 +409,6 @@ namespace TetrisGraphic
                 },
                 "LINES\n",
                 7);
-
-            AddObject(NameTable);
-            AddObject(RoundScoreTable);
-            AddObject(BestScoreTable);
-            AddObject(ClearedLinesTable);
         }
 
         public void Buttons()
@@ -397,8 +428,7 @@ namespace TetrisGraphic
                 "PAUSE",
                 8);
             pauseButton.Click += Pause;
-            AddObject(pauseButton);
-
+           
             optionsButton = new Button(
                 new GameObjectParametres()
                 {
@@ -411,7 +441,6 @@ namespace TetrisGraphic
                 "OPTIONS",
                 7);
             optionsButton.Click += GameOptions;
-            AddObject(optionsButton);
         }
 
         public void DrawResults()
@@ -498,8 +527,9 @@ namespace TetrisGraphic
 
         public void NewGame()
         {
-            GameEngine gameEngine = new GameEngine(graphic, _clientHeight, _clientWidth);
-            gameEngine.Start();
+            ClearPreviousGame();
+            InitNewGame();
+            Start();
         }
 
         public void DrawContinueString()

@@ -15,11 +15,8 @@ namespace TetrisGraphic
     {      
         // 1. exception (out of memory) при InsertObj
 
-        // 2. изменить начало игры (обнулять предыдущую игру перед началом следующей)
+        // 2. переворот фигур в CanvasField
 
-        // 3. переворот фигур в CanvasField
-
-        // 4. проблема с очищением линий
 
         static void Main(string[] args)
         { 
