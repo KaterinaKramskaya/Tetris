@@ -36,8 +36,9 @@
     <Reference Include="ConsoleGraphics.cs">
       <HintPath>D:\C Sharp. Homeworks\ConsoleGraphics.cs.dll</HintPath>
     </Reference>
-    <Reference Include="DataStructures.Lib">
-      <HintPath>D:\C Sharp. Homeworks\DataStructures.Lib\DataStructures.Lib\obj\Debug\netstandard2.0\DataStructures.Lib.dll</HintPath>
+    <Reference Include="DataStructures.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\DataStructures.Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
