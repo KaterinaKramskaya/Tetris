@@ -181,7 +181,6 @@ namespace TetrisGraphic
             figureNext = null;
         }
 
-
         public void AddObject(GameObject obj)
         {
             if (obj is Figure)

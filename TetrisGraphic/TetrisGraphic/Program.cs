@@ -13,11 +13,6 @@ namespace TetrisGraphic
 {
     class Program
     {      
-        // 1. exception (out of memory) при InsertObj
-
-        // 2. переворот фигур в CanvasField
-
-
         static void Main(string[] args)
         { 
             Random random = new Random();

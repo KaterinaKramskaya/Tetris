@@ -63,78 +63,81 @@ namespace TetrisGraphic
 
         public override void Rotate()
         {
-            if (_cube2.CoordX < _cube3.CoordX
-                && _cube2.CoordY + (2 * _size) + _size <= _canvas.ClientHeight
-                && _cube1.CoordX - (2 * _size) >= Constant.XOffset
-                && _canvasField.FindValueByCoords(_cube2.CoordX + _size, _cube2.CoordY + 2 * _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX, _cube2.CoordY + _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX, _cube2.CoordY + (2 * _size)) == 0)
+            if (_cube2.CoordX < _cube3.CoordX)
             {
-                int coordX = _cube2.CoordX;
-                int coordY = _cube2.CoordY;
+                _baseX = _cube2.CoordX;
+                _baseY = _cube2.CoordY;
 
-                _cube1.CoordX = coordX + _size;
-                _cube1.CoordY = coordY + 2 * _size;
+                _newXCube1 = _baseX + _size;
+                _newYCube1 = _baseY + 2 * _size;
 
-                _cube3.CoordX = coordX;
-                _cube3.CoordY = coordY + _size;
+                _newXCube2 = _baseX;
+                _newYCube2 = _baseY;
 
-                _cube4.CoordX = coordX;
-                _cube4.CoordY = coordY + 2 * _size;
+                _newXCube3 = _baseX;
+                _newYCube3 = _baseY + _size;
+
+                _newXCube4 = _baseX;
+                _newYCube4 = _baseY + 2 * _size;
+
+                base.Rotate();
             }
-            else if (_cube1.CoordX > _cube4.CoordX
-                && _cube2.CoordX - 2 * _size >= Constant.XOffset
-                && _canvasField.FindValueByCoords(_cube2.CoordX - 2 * _size, _cube2.CoordY + _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX - _size, _cube2.CoordY) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX - 2 * _size, _cube2.CoordY) == 0)
+            else if (_cube1.CoordX > _cube4.CoordX)
             {
-                int coordX = _cube2.CoordX;
-                int coordY = _cube2.CoordY;
+                _baseX = _cube2.CoordX;
+                _baseY = _cube2.CoordY;
 
-                _cube1.CoordX = coordX - 2 * _size;
-                _cube1.CoordY = coordY + _size;
+                _newXCube1 = _baseX - 2 * _size;
+                _newYCube1 = _baseY + _size;
 
-                _cube3.CoordX = coordX - _size;
-                _cube3.CoordY = coordY;
+                _newXCube2 = _baseX;
+                _newYCube2 = _baseY;
 
-                _cube4.CoordX = coordX - 2 * _size;
-                _cube4.CoordY = coordY;
+                _newXCube3 = _baseX - _size;
+                _newYCube3 = _baseY;
+
+                _newXCube4 = _baseX - 2 * _size;
+                _newYCube4 = _baseY;
+
+                base.Rotate();
             }
-            else if (_cube2.CoordX > _cube3.CoordX
-                && _cube2.CoordY - 2 * _size >= Constant.YOffset
-                && _canvasField.FindValueByCoords(_cube2.CoordX - _size, _cube2.CoordY - 2 * _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX, _cube2.CoordY - _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX, _cube2.CoordY - 2 * _size) == 0)
+            else if (_cube2.CoordX > _cube3.CoordX)
             {
-                int coordX = _cube2.CoordX;
-                int coordY = _cube2.CoordY;
+                _baseX = _cube2.CoordX;
+                _baseY = _cube2.CoordY;
 
-                _cube1.CoordX = coordX - _size;
-                _cube1.CoordY = coordY - 2 * _size;
+                _newXCube1 = _baseX - _size;
+                _newYCube1 = _baseY - 2 * _size;
 
-                _cube3.CoordX = coordX;
-                _cube3.CoordY = coordY - _size;
+                _newXCube2 = _baseX;
+                _newYCube2 = _baseY;
 
-                _cube4.CoordX = coordX;
-                _cube4.CoordY = coordY - 2 * _size;
+                _newXCube3 = _baseX;
+                _newYCube3 = _baseY - _size;
+
+                _newXCube4 = _baseX;
+                _newYCube4 = _baseY - 2 * _size;
+
+                base.Rotate();
             }
-            else if (_cube1.CoordX < _cube4.CoordX
-                && _cube2.CoordX + (2 * _size) + _size <= _canvas.ClientWidth
-                && _canvasField.FindValueByCoords(_cube2.CoordX + 2 * _size, _cube2.CoordY - _size) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX + _size, _cube2.CoordY) == 0
-                && _canvasField.FindValueByCoords(_cube2.CoordX + 2 * _size, _cube2.CoordY) == 0)
+            else if (_cube1.CoordX < _cube4.CoordX)
             {
-                int coordX = _cube2.CoordX;
-                int coordY = _cube2.CoordY;
+                _baseX = _cube2.CoordX;
+                _baseY = _cube2.CoordY;
 
-                _cube1.CoordX = coordX + 2 * _size;
-                _cube1.CoordY = coordY - _size;
+                _newXCube1 = _baseX + 2 * _size;
+                _newYCube1 = _baseY - _size;
 
-                _cube3.CoordX = coordX + _size;
-                _cube3.CoordY = coordY;
+                _newXCube2 = _baseX;
+                _newYCube2 = _baseY;
 
-                _cube4.CoordX = coordX + 2 * _size;
-                _cube4.CoordY = coordY;
+                _newXCube3 = _baseX + _size;
+                _newYCube3 = _baseY;
+
+                _newXCube4 = _baseX + 2 * _size;
+                _newYCube4 = _baseY;
+
+                base.Rotate();
             }
         }
     }

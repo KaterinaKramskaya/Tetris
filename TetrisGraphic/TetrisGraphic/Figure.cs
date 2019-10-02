@@ -14,6 +14,7 @@ namespace TetrisGraphic
         protected int _startCoordY;
 
         protected Cube[] _figure;
+       
 
         public Cube[] FigureArray
         {
@@ -33,6 +34,30 @@ namespace TetrisGraphic
         protected CanvasField _canvasField;
 
         public bool FigureStoppedMove { get; private set; }
+
+        // for Rotate()
+        protected int[] _newXCoords;
+        protected int[] _newYCoords;
+
+        protected int _baseX;
+        protected int _baseY;
+
+        protected int _newXCube1;
+        protected int _newYCube1;
+
+        protected int _newXCube2;
+        protected int _newYCube2;
+
+        protected int _newXCube3;
+        protected int _newYCube3;
+
+        protected int _newXCube4;
+        protected int _newYCube4;
+
+        protected bool _allCellsEmpty;
+        protected bool _hitWithCanvas;
+        protected bool _figureCanRotate;
+        
 
         public Figure(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY)
         {
@@ -72,7 +97,49 @@ namespace TetrisGraphic
             return _figure = new Cube[] { _cube1, _cube2, _cube3, _cube4 };
         }
 
-        public abstract void Rotate();
+        public virtual void Rotate()
+        {
+            _newXCoords = new int[] { _newXCube1, _newXCube2, _newXCube3, _newXCube4 };
+            _newYCoords = new int[] { _newYCube1, _newYCube2, _newYCube3, _newYCube4 };
+
+            _allCellsEmpty = true;
+            for (int i = 0; i < _newYCoords.Length; i++) 
+            {
+                for (int j = 0; j < _newXCoords.Length; j++)
+                {
+                    if (_canvasField.FindValueByCoords(_newXCoords[j], _newYCoords[i]) != 0)
+                    {
+                        _allCellsEmpty = false;
+                        break;
+                    }
+                }
+            }
+            
+            _hitWithCanvas = true;
+            if(_newXCoords.Min() >= Constant.XOffset + 3 * Constant.Size
+                && _newXCoords.Max() + _size <= _canvas.ClientWidth
+                && _newYCoords.Min() >= Constant.YOffset
+                && _newYCoords.Max() + _size <= _canvas.ClientHeight)
+            {
+                _hitWithCanvas = false;
+            }
+
+            _figureCanRotate = _allCellsEmpty && !_hitWithCanvas;
+            if (_figureCanRotate)
+            {
+                _cube1.CoordX = _newXCube1;
+                _cube1.CoordY = _newYCube1;
+
+                _cube2.CoordX = _newXCube2;
+                _cube2.CoordY = _newYCube2;
+
+                _cube3.CoordX = _newXCube3;
+                _cube3.CoordY = _newYCube3;
+
+                _cube4.CoordX = _newXCube4;
+                _cube4.CoordY = _newYCube4;
+            }
+        }
 
         public bool FigureCantUpdate()
         {
