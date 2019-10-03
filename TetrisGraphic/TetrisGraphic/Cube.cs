@@ -72,7 +72,7 @@ namespace TetrisGraphic
 
         public MovingType HitWithFigureResult(CanvasField canvasField)
         {
-            if (CoordX >= _size && CoordX <= _canvas.ClientWidth - _size && CoordY >= 0
+            if (CoordX >= 0 && CoordX <= _canvas.ClientWidth - _size && CoordY >= 0
                 && CoordY <= _canvas.ClientHeight - _size)
             {
                 if (canvasField.FindValueByCoords(CoordX, CoordY + _size) != 0)

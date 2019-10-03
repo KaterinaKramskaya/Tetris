@@ -14,7 +14,7 @@ namespace TetrisGraphic
         protected int _startCoordY;
 
         protected Cube[] _figure;
-       
+
 
         public Cube[] FigureArray
         {
@@ -57,7 +57,7 @@ namespace TetrisGraphic
         protected bool _allCellsEmpty;
         protected bool _hitWithCanvas;
         protected bool _figureCanRotate;
-        
+
 
         public Figure(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY)
         {
@@ -103,22 +103,20 @@ namespace TetrisGraphic
             _newYCoords = new int[] { _newYCube1, _newYCube2, _newYCube3, _newYCube4 };
 
             _allCellsEmpty = true;
-            for (int i = 0; i < _newYCoords.Length; i++) 
+
+            for (int i = 0; i < _newXCoords.Length; i++)
             {
-                for (int j = 0; j < _newXCoords.Length; j++)
+                if (_canvasField.FindValueByCoords(_newXCoords[i], _newYCoords[i]) != 0)
                 {
-                    if (_canvasField.FindValueByCoords(_newXCoords[j], _newYCoords[i]) != 0)
-                    {
-                        _allCellsEmpty = false;
-                        break;
-                    }
+                    _allCellsEmpty = false;
+                    break;
                 }
             }
-            
+
             _hitWithCanvas = true;
-            if(_newXCoords.Min() >= Constant.XOffset + 3 * Constant.Size
+            if (_newXCoords.Min() >= Constant.XOffset
                 && _newXCoords.Max() + _size <= _canvas.ClientWidth
-                && _newYCoords.Min() >= Constant.YOffset
+                && _newYCoords.Min() >= Constant.XOffset + 3 * Constant.Size
                 && _newYCoords.Max() + _size <= _canvas.ClientHeight)
             {
                 _hitWithCanvas = false;
