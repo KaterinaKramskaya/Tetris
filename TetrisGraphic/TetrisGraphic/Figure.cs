@@ -74,7 +74,7 @@ namespace TetrisGraphic
         {
             ClearCubesArray();
 
-            _startCoordX = 3 * Constant.Size + Constant.XOffset;
+            _startCoordX = 4 * Constant.Size + Constant.XOffset;
             _startCoordY = Constant.Size + Constant.YOffset;
 
             SetCubesCoords();

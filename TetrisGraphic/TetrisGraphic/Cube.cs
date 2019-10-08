@@ -34,12 +34,20 @@ namespace TetrisGraphic
                 {
                     CoordX += _size;
                 }
+                else
+                {
+                    CoordY += _size;
+                }
             }
             else if (movingType == MovingType.OnlyLeft)
             {
                 if (Input.IsKeyDown(Keys.LEFT))
                 {
                     CoordX -= _size;
+                }
+                else
+                {
+                    CoordY += _size;
                 }
             }
             else if (movingType == MovingType.OnlyRight)
@@ -48,9 +56,11 @@ namespace TetrisGraphic
                 {
                     CoordX += _size;
                 }
+                else
+                {
+                    CoordY += _size;
+                }
             }
-
-             CoordY += _size;
         }
 
         public MovingType HitWithCanvasResult()
