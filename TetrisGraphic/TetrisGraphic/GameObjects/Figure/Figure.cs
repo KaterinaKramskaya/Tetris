@@ -15,7 +15,6 @@ namespace TetrisGraphic
 
         protected Cube[] _figure;
 
-
         public Cube[] FigureArray
         {
             get
@@ -59,7 +58,7 @@ namespace TetrisGraphic
         protected bool _figureCanRotate;
 
 
-        public Figure(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY)
+        protected Figure(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY)
         {
             _startCoordX = startCoordX;
             _startCoordY = startCoordY;
@@ -70,7 +69,7 @@ namespace TetrisGraphic
             _canvas = canvas;
         }
 
-        public virtual void ResetCoords()
+        public void ResetCoords()
         {
             ClearCubesArray();
 
@@ -81,9 +80,9 @@ namespace TetrisGraphic
             CreateCubesArray();
         }
 
-        public abstract void SetCubesCoords();
+        protected abstract void SetCubesCoords();
 
-        public void ClearCubesArray()
+        private void ClearCubesArray()
         {
             for (int i = 0; i < _figure.Length; i++)
             {
@@ -92,7 +91,7 @@ namespace TetrisGraphic
             }
         }
 
-        public Cube[] CreateCubesArray()
+        protected Cube[] CreateCubesArray()
         {
             return _figure = new Cube[] { _cube1, _cube2, _cube3, _cube4 };
         }
@@ -171,7 +170,7 @@ namespace TetrisGraphic
             }
         }
 
-        public MovingType MovingTypeResult()
+        private MovingType MovingTypeResult()
         {
             if (HitBottomBoard())
             {
@@ -225,7 +224,7 @@ namespace TetrisGraphic
             }
         }
 
-        protected bool HitBottomBoard()
+        private bool HitBottomBoard()
         {
             bool result = false;
 
@@ -248,7 +247,7 @@ namespace TetrisGraphic
             return result;
         }
 
-        protected bool HitLeftBoard()
+        private bool HitLeftBoard()
         {
             bool result = false;
             foreach (Cube cube in _figure)
@@ -270,7 +269,7 @@ namespace TetrisGraphic
             return result;
         }
 
-        protected bool HitRightBoard()
+        private bool HitRightBoard()
         {
             bool result = false;
 
@@ -293,7 +292,7 @@ namespace TetrisGraphic
             return result;
         }
 
-        protected bool BetweenBoardAndFigure()
+        private bool BetweenBoardAndFigure()
         {
             bool result = false;
 

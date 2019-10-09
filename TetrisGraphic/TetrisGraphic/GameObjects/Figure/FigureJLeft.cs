@@ -8,28 +8,58 @@ namespace TetrisGraphic
 {
     public class FigureJLeft : Figure
     {
-        public FigureJLeft(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY) : base(color, canvas, canvasField, startCoordX, startCoordY)
+        public FigureJLeft(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY)
+            : base(color, canvas, canvasField, startCoordX, startCoordY)
         {
             SetCubesCoords();
             CreateCubesArray();
         }
 
-        public override void SetCubesCoords()
+        protected override void SetCubesCoords()
         {
-            _cube1 = new Cube(new GameObjectParametres()
-            { Color = this.Color, CoordX = _startCoordX, CoordY = _startCoordY, Height = _size, Width = _size },
-                              _canvas);
-            _cube2 = new Cube(new GameObjectParametres()
-            { Color = this.Color, CoordX = _startCoordX + _size, CoordY = _startCoordY, Height = _size, Width = _size },
-                              _canvas);
+            _cube1 = new Cube(
+                new GameObjectParametres()
+                {
+                    Color = this.Color,
+                    CoordX = _startCoordX,
+                    CoordY = _startCoordY,
+                    Height = _size,
+                    Width = _size
+                },
+                _canvas);
 
-            _cube3 = new Cube(new GameObjectParametres()
-            { Color = this.Color, CoordX = _startCoordX + 2 * _size, CoordY = _startCoordY, Height = _size, Width = _size },
-                              _canvas);
+            _cube2 = new Cube(
+                new GameObjectParametres()
+                {
+                    Color = this.Color,
+                    CoordX = _startCoordX + _size,
+                    CoordY = _startCoordY,
+                    Height = _size,
+                    Width = _size
+                },
+                _canvas);
 
-            _cube4 = new Cube(new GameObjectParametres()
-            { Color = this.Color, CoordX = _startCoordX + 2 * _size, CoordY = _startCoordY + _size, Height = _size, Width = _size },
-                              _canvas);
+            _cube3 = new Cube(
+                new GameObjectParametres()
+                {
+                    Color = this.Color,
+                    CoordX = _startCoordX + 2 * _size,
+                    CoordY = _startCoordY,
+                    Height = _size,
+                    Width = _size
+                },
+                 _canvas);
+
+            _cube4 = new Cube(
+                new GameObjectParametres()
+                {
+                    Color = this.Color,
+                    CoordX = _startCoordX + 2 * _size,
+                    CoordY = _startCoordY + _size,
+                    Height = _size,
+                    Width = _size
+                },
+            _canvas);
         }
 
         public override void Rotate()

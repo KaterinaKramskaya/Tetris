@@ -8,13 +8,14 @@ namespace TetrisGraphic
 {
     public class FigureO : Figure
     {
-        public FigureO(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY) : base(color, canvas, canvasField, startCoordX, startCoordY)
+        public FigureO(uint color, Canvas canvas, CanvasField canvasField, int startCoordX, int startCoordY) 
+            : base(color, canvas, canvasField, startCoordX, startCoordY)
         {
             SetCubesCoords();
             CreateCubesArray();
         }
 
-        public override void SetCubesCoords()
+        protected override void SetCubesCoords()
         {
             _cube1 = new Cube(
                new GameObjectParametres()
