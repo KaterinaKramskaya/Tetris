@@ -64,8 +64,8 @@ namespace TetrisGraphic
             rnd = new Random();
             this.graphic = graphic;
 
-            startCoordX = 4 * Constant.Size + Constant.XOffset;
-            startCoordY = 2 * Constant.Size + Constant.YOffset;
+            startCoordX = 3 * Constant.Size + Constant.XOffset;
+            startCoordY = 2*Constant.Size + Constant.YOffset;
 
             nextStartCoordX = _clientWidth + Constant.XOffset + Constant.Size + 7;
             nextStartCoordY = _clientWidth / 2 + 2 * Constant.YOffset + 2 * Constant.Size;

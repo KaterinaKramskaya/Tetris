@@ -52,33 +52,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestResultKeeper.cs" />
-    <Compile Include="Button.cs" />
-    <Compile Include="Canvas.cs" />
-    <Compile Include="CanvasField.cs" />
+    <Compile Include="MenuElements\Button.cs" />
+    <Compile Include="GameObjects\PlayingField\Canvas.cs" />
+    <Compile Include="GameObjects\PlayingField\CanvasField.cs" />
     <Compile Include="Constant.cs" />
-    <Compile Include="Cube.cs" />
-    <Compile Include="FieldCell.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="FigureColors.cs" />
-    <Compile Include="FigureCreator.cs" />
-    <Compile Include="FigureI.cs" />
-    <Compile Include="FigureJLeft.cs" />
-    <Compile Include="FigureJRight.cs" />
-    <Compile Include="FigureO.cs" />
-    <Compile Include="FigureS.cs" />
-    <Compile Include="FigureT.cs" />
-    <Compile Include="FigureZ.cs" />
+    <Compile Include="GameObjects\Cube.cs" />
+    <Compile Include="GameObjects\PlayingField\FieldCell.cs" />
+    <Compile Include="GameObjects\Figure\Figure.cs" />
+    <Compile Include="GameObjects\Figure\FigureColors.cs" />
+    <Compile Include="GameObjects\Figure\FigureCreator.cs" />
+    <Compile Include="GameObjects\Figure\FigureI.cs" />
+    <Compile Include="GameObjects\Figure\FigureJLeft.cs" />
+    <Compile Include="GameObjects\Figure\FigureJRight.cs" />
+    <Compile Include="GameObjects\Figure\FigureO.cs" />
+    <Compile Include="GameObjects\Figure\FigureS.cs" />
+    <Compile Include="GameObjects\Figure\FigureT.cs" />
+    <Compile Include="GameObjects\Figure\FigureZ.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="GameObjectParametres.cs" />
-    <Compile Include="Grid.cs" />
-    <Compile Include="MovingType.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\GameObjectParametres.cs" />
+    <Compile Include="GameObjects\PlayingField\Grid.cs" />
+    <Compile Include="GameObjects\MovingType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextTable.cs" />
+    <Compile Include="MenuElements\TextTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
